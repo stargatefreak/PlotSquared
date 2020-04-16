@@ -190,6 +190,7 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
             return;
         }
 
+        /*
         new UpdateUtility(this).updateChecker();
 
         if (PremiumVerification.isPremium()) {
@@ -198,6 +199,7 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
         } else {
             PlotSquared.log(Captions.PREFIX + "&6Couldn't verify purchase :(");
         }
+         */
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders(this).register();

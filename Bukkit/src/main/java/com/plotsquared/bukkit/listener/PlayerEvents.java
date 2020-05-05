@@ -99,7 +99,6 @@ import com.plotsquared.core.util.EntityUtil;
 import com.plotsquared.core.util.MainUtil;
 import com.plotsquared.core.util.MathMan;
 import com.plotsquared.core.util.Permissions;
-import com.plotsquared.core.util.PremiumVerification;
 import com.plotsquared.core.util.RegExUtil;
 import com.plotsquared.core.util.StringWrapper;
 import com.plotsquared.core.util.entity.EntityCategories;
@@ -654,8 +653,7 @@ public class PlayerEvents extends PlotListener implements Listener {
         }, 20);
 
         if (pp.hasPermission(Captions.PERMISSION_ADMIN_UPDATE_NOTIFICATION.getTranslated())
-            && Settings.Enabled_Components.UPDATE_NOTIFICATIONS && PremiumVerification.isPremium()
-            && UpdateUtility.hasUpdate) {
+            && Settings.Enabled_Components.UPDATE_NOTIFICATIONS && UpdateUtility.hasUpdate) {
             new PlotMessage("-----------------------------------").send(pp);
             new PlotMessage(Captions.PREFIX + "There appears to be a PlotSquared update available!")
                 .color("$1").send(pp);

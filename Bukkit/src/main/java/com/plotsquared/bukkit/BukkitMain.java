@@ -193,10 +193,9 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
         if (Settings.Enabled_Components.UPDATE_NOTIFICATIONS) {
             new UpdateUtility(this).updateChecker();
         }
-
-        PlotSquared.log(Captions.PREFIX + "&6PlotSquared version licensed to Spigot user");
-        PlotSquared.log(Captions.PREFIX + "&6https://www.spigotmc.org/resources/plotsquared-v5.77506");
-        PlotSquared.log(Captions.PREFIX + "&6Thanks for supporting us :)");
+			PlotSquared.log(Captions.PREFIX + "&6PlotSquared version licensed to Spigot user");
+            PlotSquared.log(Captions.PREFIX + "&6https://www.spigotmc.org/resources/");
+            PlotSquared.log(Captions.PREFIX + "&6Thanks for supporting us :)");
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders().register();
@@ -721,6 +720,8 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
             }
             return map;
         }));
+        metrics.addCustomChart(new Metrics.SimplePie("premium",
+            () -> "Premium"));
     }
 
     @Override public ChunkManager initChunkManager() {

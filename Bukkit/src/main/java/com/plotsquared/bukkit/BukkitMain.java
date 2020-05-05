@@ -81,7 +81,6 @@ import com.plotsquared.core.util.ConsoleColors;
 import com.plotsquared.core.util.EconHandler;
 import com.plotsquared.core.util.InventoryUtil;
 import com.plotsquared.core.util.MainUtil;
-import com.plotsquared.core.util.PremiumVerification;
 import com.plotsquared.core.util.ReflectionUtils;
 import com.plotsquared.core.util.SchematicHandler;
 import com.plotsquared.core.util.SetupUtils;
@@ -129,9 +128,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.plotsquared.core.util.PremiumVerification.getDownloadID;
-import static com.plotsquared.core.util.PremiumVerification.getResourceID;
-import static com.plotsquared.core.util.PremiumVerification.getUserID;
 import static com.plotsquared.core.util.ReflectionUtils.getRefClass;
 
 public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain {
@@ -194,20 +190,13 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
             return;
         }
 
-        if (PremiumVerification.isPremium() && Settings.Enabled_Components.UPDATE_NOTIFICATIONS) {
+        if (Settings.Enabled_Components.UPDATE_NOTIFICATIONS) {
             new UpdateUtility(this).updateChecker();
         }
 
-        if (PremiumVerification.isPremium()) {
-            PlotSquared.log(
-                Captions.PREFIX + "&6PlotSquared version licensed to Spigot user " + getUserID());
-            PlotSquared
-                .log(Captions.PREFIX + "&6https://www.spigotmc.org/resources/" + getResourceID());
-            PlotSquared.log(Captions.PREFIX + "&6Download ID: " + getDownloadID());
-            PlotSquared.log(Captions.PREFIX + "&6Thanks for supporting us :)");
-        } else {
-            PlotSquared.log(Captions.PREFIX + "&6Couldn't verify purchase :(");
-        }
+        PlotSquared.log(Captions.PREFIX + "&6PlotSquared version licensed to Spigot user");
+        PlotSquared.log(Captions.PREFIX + "&6https://www.spigotmc.org/resources/plotsquared-v5.77506");
+        PlotSquared.log(Captions.PREFIX + "&6Thanks for supporting us :)");
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders().register();
@@ -732,8 +721,6 @@ public final class BukkitMain extends JavaPlugin implements Listener, IPlotMain 
             }
             return map;
         }));
-        metrics.addCustomChart(new Metrics.SimplePie("premium",
-            () -> PremiumVerification.isPremium() ? "Premium" : "Non-Premium"));
     }
 
     @Override public ChunkManager initChunkManager() {
